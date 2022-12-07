@@ -1,0 +1,135 @@
+﻿<Window x:Class="TestCreator.Windows.GroupViewWindowNew"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestCreator.Windows"
+        mc:Ignorable="d"
+        Title="GroupViewWindowNew" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Главная">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label 
+                            x:Name="groupName" 
+                            Content="GroupName" 
+                            FontSize="24"
+                            FontFamily="Arial"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" />
+                        
+                        <Button 
+                            x:Name="deleteGroup" 
+                            Margin="0,0,10,0"
+                            Content="Удалить группу" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center" 
+                            Click="Button_Click" 
+                            Grid.Column="4"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="140"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            x:Name="invitationLink" 
+                            Content="invitationLink" 
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Center"
+                            VerticalAlignment="Center" />
+
+                        <Button 
+                            x:Name="copyLink"
+                            Grid.Column="1"
+                            Content="Скопировать" 
+                            HorizontalAlignment="Right"
+                            Margin="0,0,10,0"
+                            VerticalAlignment="Center" 
+                            Click="copyLink_Click_CopyLink" Grid.ColumnSpan="2"/>
+
+                    </Grid>
+
+                    <ListView 
+                        x:Name="listSubscribers" 
+                        Grid.Row="2"
+                        MouseDoubleClick="listSubscribers_MouseDoubleClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=login}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Тесты">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button 
+                                x:Name="button_publish_test" 
+                                Margin="30,0,10,0"
+                                Content="Опубликовать тест" 
+                                Click="Button_Click_addTest"/>
+
+                            <Button 
+                                x:Name="delete_test_from_group" 
+                                Content="Удалить тест" 
+                                Margin="0,0,30,0"
+                                Click="delete_test_from_group_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <ListView 
+                        x:Name="listTests" 
+                        Grid.Row="1"
+                        MouseDoubleClick="listTests_MouseDoubleClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=title}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
